@@ -11,9 +11,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20140601175924) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "datasets", force: true do |t|
+    t.string   "name",                       null: false
+    t.string   "graph_type",                 null: false
+    t.text     "description",   default: ""
+    t.integer  "content_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "data_location"
+  end
+
+  create_table "datasets_policies", force: true do |t|
+    t.integer  "dataset",    null: false
+    t.integer  "policies",   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "policies", force: true do |t|
+    t.string   "name",                     null: false
+    t.text     "description", default: ""
+    t.integer  "content_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end
